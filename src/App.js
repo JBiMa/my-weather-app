@@ -1,6 +1,5 @@
 import hotBg from "./assets/sunny.jpg";
 import snowBg from "./assets/snow.jpg";
-import rainBg from "./assets/rainny.jpg";
 import Descriptions from "./components/Descriptions";
 import { useEffect, useState } from "react";
 import { getFormattedWeatherData } from "./weatherService";
@@ -15,10 +14,7 @@ function App() {
       const data = await getFormattedWeatherData(city);
       setWeather(data);
 
-      // const threshold = units ? 20 : 60;
-      if (data.weather.description.include("Rain") && data.temp > 0)
-        setBg(rainBg);
-      else if (data.temp <= 10) setBg(snowBg);
+      if (data.temp <= 10) setBg(snowBg);
       else setBg(hotBg);
     };
     fetchWeatherData();
