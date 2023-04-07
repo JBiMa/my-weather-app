@@ -16,8 +16,10 @@ function App() {
       setWeather(data);
 
       // const threshold = units ? 20 : 60;
-      if (data.temp <= 15) setBg(snowBg);
-      if (data.weather == "Rain") setBg(rainBg);
+      if (data.weather.description.include("Rain") && data.temp > 0)
+        setBg(rainBg);
+      else if (data.temp <= 10) setBg(snowBg);
+      else setBg(hotBg);
     };
     fetchWeatherData();
   });
